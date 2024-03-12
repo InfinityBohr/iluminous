@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infinity Player</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/tplayer.js@1.1.0/dist/index.js"></script> -->
+    <script src="/dist/index.js"></script>
+  </head>
+  <body>
+    <div style="max-width: 100vh">
+      <video id="tplayer"></video>
+    </div>
+  </body>
+
+  <script>
+    window.tplayer({
+      id: "tplayerhtml", // anything
+      playerElem: document.getElementById("tplayer"),
+      source: {
+        dash: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/mpds/11331.mpd",
+        hls: "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8",
+      },
+      sourceHeaders: {
+        dash: {
+          // "T-Header": "You can send header like this",
+        },
+        hls: {
+          // "T-Header": "You can send header like this",
+        },
+      },
+      drm: {
+        widevine: {
+          url: "https://cwip-shaka-proxy.appspot.com/no_auth",
+          headers: {
+            // "T-Header": "You can send header like this",
+          },
+        },
+        playready: {
+          url: "https://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&ContentKey=EAtsIJQPd5pFiRUrV9Layw==",
+          headers: {
+            // "T-Header": "You can send header like this",
+          },
+        },
+      },
+      ui: {
+        mainColor: "red",
+      },
+      captions: [
+        {
+          language: "en",
+          src: "./test.vtt",
+          label: "English",
+        },
+      ],
+    });
+
+    // Normal without drm (HLS is preferred)
+
+    // window.tplayer({
+    //   id: "tplayerhtml", // anything
+    //   playerElem: document.getElementById("tplayer"),
+    //   source: {
+    //     dash: "https://dash.akamaized.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd",
+    //     hls: "https://multiplatform-f.akamaihd.net/i/multi/april11/sintel/sintel-hd_,512x288_450_b,640x360_700_b,768x432_1000_b,1024x576_1400_m,.mp4.csmil/master.m3u8",
+    //   },
+    // });
+  </script>
+</html>
